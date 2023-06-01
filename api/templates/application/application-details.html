@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Application details{% endblock %}
+
+{% block content %}
+
+    <h1>{{application.name}}</h1>
+    <h1>{{application.phone}}</h1>
+
+    <p>{{application.aboutMe}}</p>
+    <p>{{application.workExperience}}</p>
+    <p>{{application.education}}</p>
+
+{% endblock %}

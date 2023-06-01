@@ -25,6 +25,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'user.apps.UserConfig',
     'vacancy.apps.VacancyConfig',
+    'application.apps.ApplicationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
