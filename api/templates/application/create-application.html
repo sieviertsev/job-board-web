@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Create application{% endblock %}
+
+{% block content %}
+
+<form method="POST" class="form-group">
+    {% csrf_token %}
+    
+    {{form.name.label}}
+    {{form.name}}
+
+    {{form.phone.label}}
+    {{form.phone}}
+
+    {{form.aboutMe.label}}
+    {{form.aboutMe}}
+
+    {{form.workExperience.label}}
+    {{form.workExperience}}
+
+    {{form.education.label}}
+    {{form.education}}
+
+    {{form.skills.label}}
+    {{form.skills}}
+
+    {{form.coverLetter.label}}
+    {{form.coverLetter}}
+
+    <button type="submit" class="btn btn-success">Create</button>
+</form>
+
+{% endblock %}

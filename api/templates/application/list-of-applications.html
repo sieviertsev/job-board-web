@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Applications{% endblock %}
+
+{% block content %}
+
+    {% for application in applications %}
+
+        <h1>{{application.name}}</h1>
+        <h1>{{application.phone}}</h1>
+
+        <p>{{application.aboutMe}}</p>
+        <p>{{application.workExperience}}</p>
+        <p>{{application.education}}</p>
+
+    {% endfor %}
+
+{% endblock %}
