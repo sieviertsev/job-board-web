@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from django.core.paginator import Paginator
 
 from .models import Vacancy, Category
 from .forms import CreateVacancyForm
@@ -9,12 +11,23 @@ def getMany(request):
     vacancies = Vacancy.objects.all()
     categories = Category.objects.all()
 
+    current_time = timezone.now()
+
+    for  vacancy in vacancies:
+        time_difference = current_time - vacancy.created_at
+        hours_ago = time_difference.total_seconds() // 3600
+        vacancy.time_ago = f'{hours_ago} hours ago'
+        if (hours_ago < 1):
+            vacancy.time_ago = 'just now'
+    
+    paginator = Paginator(vacancies, 3)
+    page_number = request.GET.get('page')
+    vacancies = paginator.get_page(page_number)
+
     context = {
         'vacancies': vacancies,
         'categories': categories,
     }
-
-    print(vacancies[0].type)
 
     return render(request, 'vacancy/list-of-vacancies.html', context)
 
