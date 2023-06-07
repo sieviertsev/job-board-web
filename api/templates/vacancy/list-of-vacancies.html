@@ -53,10 +53,9 @@
                         <div class="select-job-items2">
                             <select name="select">
                                 <option value="">All Category</option>
-                                <option value="">Category 1</option>
-                                <option value="">Category 2</option>
-                                <option value="">Category 3</option>
-                                <option value="">Category 4</option>
+                                {% for category in categories %}
+                                    <option value="">{{ category.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <!--  Select job items End-->
@@ -84,80 +83,8 @@
                         </div>
                         <!-- select-Categories End -->
                     </div>
-                    <!-- single two -->
-                    <div class="single-listing">
-                       <div class="small-section-tittle2">
-                             <h4>Job Location</h4>
-                       </div>
-                        <!-- Select job items start -->
-                        <div class="select-job-items2">
-                            <select name="select">
-                                <option value="">Anywhere</option>
-                                <option value="">Category 1</option>
-                                <option value="">Category 2</option>
-                                <option value="">Category 3</option>
-                                <option value="">Category 4</option>
-                            </select>
-                        </div>
-                        <!--  Select job items End-->
-                        <!-- select-Categories start -->
-                        <div class="select-Categories pt-80 pb-50">
-                            <div class="small-section-tittle2">
-                                <h4>Experience</h4>
-                            </div>
-                            <label class="container">1-2 Years
-                                <input type="checkbox" >
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">2-3 Years
-                                <input type="checkbox" checked="checked active">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">3-6 Years
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">6-more..
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <!-- select-Categories End -->
-                    </div>
-                    <!-- single three -->
-                    <div class="single-listing">
-                        <!-- select-Categories start -->
-                        <div class="select-Categories pb-50">
-                            <div class="small-section-tittle2">
-                                <h4>Posted Within</h4>
-                            </div>
-                            <label class="container">Any
-                                <input type="checkbox" >
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Today
-                                <input type="checkbox" checked="checked active">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Last 2 days
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Last 3 days
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Last 5 days
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Last 10 days
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <!-- select-Categories End -->
-                    </div>
+
+
                     <div class="single-listing">
                         <!-- Range Slider Start -->
                         <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
@@ -224,14 +151,14 @@
                                         <h4>{{ vacancy.name }}</h4>
                                     </a>
                                     <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
+                                        <li>{{ vacancy.agency }}</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{ vacancy.type }}</li>
+                                        <li>${{ vacancy.price }}</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="items-link items-link2 f-right">
-                                <a href="job_details.html">Full Time</a>
+                                <a href="job_details.html">Apply</a>
                                 <span>7 hours ago</span>
                             </div>
                         </div>

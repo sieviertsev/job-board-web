@@ -2,13 +2,19 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 
-from .models import Vacancy
+from .models import Vacancy, Category
 from .forms import CreateVacancyForm
 
 def getMany(request):
     vacancies = Vacancy.objects.all()
+    categories = Category.objects.all()
 
-    context = {'vacancies': vacancies}
+    context = {
+        'vacancies': vacancies,
+        'categories': categories,
+    }
+
+    print(vacancies[0].type)
 
     return render(request, 'vacancy/list-of-vacancies.html', context)
 
