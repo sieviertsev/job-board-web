@@ -38,6 +38,26 @@ def getById(request, id):
 
     return render(request, 'vacancy/vacancy-details.html', context)
 
+@login_required(login_url='signIn')
+def getAllByUser(request):
+    user = request.user
+    vacancies = Vacancy.objects.filter(employer_id=user.id)
+
+    current_time = timezone.now()
+
+    for  vacancy in vacancies:
+        time_difference = current_time - vacancy.created_at
+        hours_ago = time_difference.total_seconds() // 3600
+        vacancy.time_ago = f'{hours_ago} hours ago'
+        if (hours_ago < 1):
+            vacancy.time_ago = 'just now'
+    
+    context = {
+        'vacancies': vacancies,
+    }
+
+    return render(request, 'vacancy/get-vacancies-by-user.html', context)
+
 
 @login_required(login_url='signIn')
 def create(request):

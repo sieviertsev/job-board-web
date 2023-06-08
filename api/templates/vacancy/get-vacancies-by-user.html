@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Vacancies{% endblock %}
+
+{% block content %}
+
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/about.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Here is all of yours vacancies</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero Area End -->
+
+<!-- Job List Area Start -->
+<div class="container">
+    <div class="row">
+        <!-- Right content -->
+        <div class="col-xl-9 col-lg-9 col-md-8">
+            <!-- Featured_job_start -->
+            <section class="featured-job-area">
+                <div class="container">
+                    {% for vacancy in vacancies %}
+                        <!-- single-job-content -->
+                    <div class="single-job-items mb-30">
+                        <div class="job-items">
+                            <div class="company-img">
+                                <a href="/application/create/{{vacancy.id}}/"><img src="{% static 'assets/img/icon/job-list2.png' %}" alt=""></a>
+                            </div>
+                            <div class="job-tittle job-tittle2">
+                                <a href="/application/create/{{vacancy.id}}/">
+                                    <h4>{{ vacancy.name }}</h4>
+                                </a>
+                                <ul>
+                                    <li>{{ vacancy.agency }}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>{{ vacancy.type }}</li>
+                                    <li>${{ vacancy.price }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="items-link items-link2 f-right">
+                            <a href="/application/create/{{vacancy.id}}/">Apply</a>
+                            <span>{{ vacancy.time_ago }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </section>
+            <!-- Featured_job_end -->
+        </div>
+    </div>
+</div>
+<!-- Job List Area End -->
+
+{% endblock %}
