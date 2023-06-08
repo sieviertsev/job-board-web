@@ -1,34 +1,69 @@
 {% extends 'index.html' %}
+{% load static %}
 
 {% block title %}Create application{% endblock %}
 
 {% block content %}
 
-<form method="POST" class="form-group">
-    {% csrf_token %}
-    
-    {{form.name.label}}
-    {{form.name}}
+<main>
+    <div class="slider-area">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/about.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Apply to this job</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {{form.phone.label}}
-    {{form.phone}}
-
-    {{form.aboutMe.label}}
-    {{form.aboutMe}}
-
-    {{form.workExperience.label}}
-    {{form.workExperience}}
-
-    {{form.education.label}}
-    {{form.education}}
-
-    {{form.skills.label}}
-    {{form.skills}}
-
-    {{form.coverLetter.label}}
-    {{form.coverLetter}}
-
-    <button type="submit" class="btn btn-success">Create</button>
-</form>
+    <div class="signUpDiv">
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            <div class="mt-10">
+                <input type="text" name="name" placeholder="What is your name?"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'What is your name?'" required
+                    class="single-input">
+            </div>
+            <div class="mt-10">
+                <input type="text" name="phone" placeholder="Your phone"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your phone'" required
+                    class="single-input">
+            </div>
+            <div class="mt-10">
+                <input type="text" name="aboutMe" placeholder="Tell us about you"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tell us about you'" required
+                    class="single-input">
+            </div>
+            <div class="mt-10">
+                <input type="text" name="workExperience" placeholder="Describe your work experience"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Describe your work experience'" required
+                    class="single-input">
+            </div>
+            <div class="mt-10">
+                <input type="text" name="education" placeholder="Describe your education"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Describe your education'" required
+                    class="single-input">
+            </div>
+            <div class="mt-10">
+                <input type="text" name="skills" placeholder="What is your skills?"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'What is your skills?'" required
+                    class="single-input">
+            </div>
+            <div class="mt-10">
+                <input type="text" name="coverLetter" placeholder="Write your cover letter"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Write your cover letter'" required
+                    class="single-input">
+            </div>
+        
+            <div style="padding: 40px;">
+                <button type="submit" class="btn btn-success" style="margin-left: 70px; margin-top: 50px;">Create</button>
+            </div>
+        </form>
+    </div>
+</main>
 
 {% endblock %}
