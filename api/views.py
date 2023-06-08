@@ -5,7 +5,6 @@ from vacancy.models import Category
 
 def home(request):
     categories = Category.objects.all()
-    print(request.user)
 
     context = {
         'categories': categories,
@@ -20,7 +19,3 @@ def about(request):
 def contact(request):
     context = {}
     return render(request, 'contact.html', context)
-
-def vacancy_form(request):
-    context = {}
-    return render(request, 'vacancy_form.html', context)

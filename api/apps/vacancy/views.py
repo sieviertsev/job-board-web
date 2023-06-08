@@ -46,10 +46,15 @@ def create(request):
     if request.method == 'POST':
         form = CreateVacancyForm(request.POST)
         if form.is_valid():
+            category = get_object_or_404(Category, id=form.cleaned_data['categoryId'])
             vacancy = Vacancy(
                 name=form.cleaned_data['name'], 
+                agency=form.cleaned_data['agency'], 
+                price=form.cleaned_data['price'], 
+                type=form.cleaned_data['type'],
                 description=form.cleaned_data['description'],
-                employer=request.user
+                employer=request.user,
+                category=category,
             )
             vacancy.save()
             messages.info(request, 'Vacancy created')
@@ -57,7 +62,11 @@ def create(request):
         else:
             messages.error(request, 'Incorrect values')
     
-    context = {'form': form}
+    categories = Category.objects.all()
+    context = {
+        'form': form,
+        'categories': categories
+    }
 
     return render(request, 'vacancy/create-vacancy.html', context)
 

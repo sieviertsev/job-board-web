@@ -12,8 +12,6 @@ urlpatterns = [
 
     path('contact/', views.contact, name = 'contact'),
 
-    path('vacancy_form/', views.vacancy_form, name = 'vacancy_form'),
-
     path('user/', include('user.urls')),
 
     path('vacancy/', include('vacancy.urls')),

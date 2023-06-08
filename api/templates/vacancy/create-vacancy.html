@@ -1,19 +1,84 @@
 {% extends 'index.html' %}
+{% load static %}
 
-{% block title %}Create vacancy{% endblock %}
+{% block title %}Create a Vacancy{% endblock %}</title>
 
 {% block content %}
 
-<form method="POST" class="form-group">
-    {% csrf_token %}
-    
-    {{form.name.label}}
-    {{form.name}}
+<main>
 
-    {{form.description.label}}
-    {{form.description}}
+    <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/about.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Create your Vacancy</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <button type="submit" class="btn btn-success">Create</button>
-</form>
+    <div class="signUpDiv">
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            <div class="mt-10">
+                <input type="text" name="name" placeholder="Name of vacancy"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name of vacancy'" required
+                    class="single-input">
+            </div>
+            <div class="mt-10">
+                <input type="text" name="agency" placeholder="Your agency"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your agency'" required
+                    class="single-input">
+            </div>
+            <div class="mt-10">
+                <input type="number" name="price" placeholder="What salary is?"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'What salary is?'" required
+                    class="single-input">
+            </div>
+            <div class="mt-10">
+                <input type="text" name="description" placeholder="Describe your vacancy"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Describe your vacancy'" required
+                    class="single-input">
+            </div>
+
+            <div class="select-Categories pt-80 pb-50">
+                <div class="small-section-tittle2">
+                    <h4>Job Type</h4>
+                </div>
+                <label class="container">Full Time
+                    <input type="radio" name="type" value="Full Time">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Part Time
+                    <input type="radio" name="type" value="Part Time">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Remote
+                    <input type="radio" name="type" value="Remote">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Freelance
+                    <input type="radio" name="type" value="Freelance">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <select name="categoryId">
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        
+            <div style="padding: 40px;">
+                <button type="submit" class="btn btn-success" style="margin: auto; margin-top: 50px;">Create</button>
+            </div>
+        </form>
+    </div>
+
+</main>
 
 {% endblock %}
