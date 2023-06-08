@@ -76,8 +76,13 @@
                                     </div>          
                                     <!-- Header-btn -->
                                     <div class="header-btn d-none f-right d-lg-block">
-                                        <a href="/user/signUp/" class="btn head-btn1">Sign Up</a>
-                                        <a href="/user/signIn/" class="btn head-btn2">Sign In</a>
+                                        {% if user.id != None %}
+                                            <p class="btn head-btn2">{{ user.get_short_name }}</p>
+                                            <a href="/user/logOut/" class="btn head-btn2">Log Out</a>
+                                        {% else %}
+                                            <a href="/user/signUp/" class="btn head-btn1">Sign Up</a>
+                                            <a href="/user/signIn/" class="btn head-btn2">Sign In</a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

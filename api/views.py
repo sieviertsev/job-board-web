@@ -5,9 +5,11 @@ from vacancy.models import Category
 
 def home(request):
     categories = Category.objects.all()
+    print(request.user)
 
     context = {
         'categories': categories,
+        'user': request.user,
     }
     return render(request, 'base.html', context)
 
