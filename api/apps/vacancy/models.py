@@ -5,6 +5,10 @@ from django.utils.translation import gettext_lazy as _
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    imageURL = models.CharField(max_length=100, default='')
+
+    class Meta:
+        app_label = 'vacancy'
 
 class Vacancy(models.Model):
     class JobType(models.TextChoices):
@@ -27,3 +31,6 @@ class Vacancy(models.Model):
     employer = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        app_label = 'vacancy'
