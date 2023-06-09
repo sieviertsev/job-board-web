@@ -8,7 +8,28 @@ from .models import Vacancy, Category
 from .forms import CreateVacancyForm
 
 def getMany(request):
+    categoryId = request.GET.get('category')
+    priceFrom = request.GET.get('priceFrom')
+    priceTo = request.GET.get('priceTo')
+    types = request.GET.getlist('type')
+
     vacancies = Vacancy.objects.all()
+    vacanciesCount = vacancies.__len__
+
+    if categoryId:
+        vacancies = vacancies.filter(category_id=categoryId)
+
+    if priceFrom and priceTo:
+        vacancies = vacancies.filter(price__range=(priceFrom, priceTo))
+    elif priceFrom:
+        vacancies = vacancies.filter(price__gte=priceFrom)
+    elif priceTo:
+        vacancies = vacancies.filter(price__lte=priceTo)
+
+    if types:
+        vacancies = vacancies.filter(type__in=types)
+
+
     categories = Category.objects.all()
 
     current_time = timezone.now()
@@ -27,6 +48,7 @@ def getMany(request):
     context = {
         'vacancies': vacancies,
         'categories': categories,
+        'vacanciesCount': vacanciesCount
     }
 
     return render(request, 'vacancy/list-of-vacancies.html', context)
