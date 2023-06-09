@@ -8,7 +8,7 @@ class CreateVacancyForm(forms.ModelForm):
         model = Vacancy
         fields = [
             "name", 
-            "agency", 
+            "agency",
             "price",
             "type",
             "description", 

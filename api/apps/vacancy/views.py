@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.core.paginator import Paginator
 
+from SPARQLWrapper import SPARQLWrapper, JSON
+
 from .models import Vacancy, Category
 from .forms import CreateVacancyForm
 
@@ -56,7 +58,12 @@ def getMany(request):
 def getById(request, id):
     vacancy = get_object_or_404(Vacancy, id=id)
 
-    context = {'vacancy': vacancy}
+    agencyInfo = get_data(f'http://dbpedia.org/resource/{vacancy.agency}')
+
+    context = {
+        'vacancy': vacancy,
+        'agencyInfo': agencyInfo[:500],
+    }
 
     return render(request, 'vacancy/vacancy-details.html', context)
 
@@ -126,3 +133,24 @@ def delete(request, id):
 
     return redirect('home')
 
+def get_data(url):
+    endpoint_url = "https://dbpedia.org/sparql"
+    query = f"""
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+        SELECT ?abstract WHERE {{
+            <{url}> dbo:abstract ?abstract.
+            FILTER (lang(?abstract) = 'en')
+        }}
+    """
+    sparql = SPARQLWrapper(endpoint_url)
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    
+    abstract = ""
+    if "results" in results and "bindings" in results["results"] and len(results["results"]["bindings"]) > 0:
+        abstract = results["results"]["bindings"][0]["abstract"]["value"]
+    
+    return abstract

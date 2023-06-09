@@ -16,9 +16,5 @@ urlpatterns = [
 
     path('vacancy/', include('vacancy.urls')),
 
-    path('resume/', include('resume.urls')),
-
-    path('coverLetter/', include('coverLetter.urls')),
-
     path('application/', include('application.urls')),
 ]
