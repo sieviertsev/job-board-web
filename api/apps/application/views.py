@@ -22,6 +22,18 @@ def getById(request, id):
 
 
 @login_required(login_url='signIn')
+def getAllByUser(request):
+    user = request.user
+    applications = Application.objects.filter(user_id=user.id)
+
+    context = {
+        'applications': applications,
+    }
+
+    return render(request, 'application/get-applications-by-user.html', context)
+
+
+@login_required(login_url='signIn')
 def create(request, vacancyId):
     form = CreateApplicationForm()
 

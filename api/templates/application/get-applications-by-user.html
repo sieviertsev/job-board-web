@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% load static %}
 
-{% block title %}Applications{% endblock %}
+{% block title %}Vacancies{% endblock %}
 
 {% block content %}
 
@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>Here is all of yours vacancies</h2>
+                        <h2>Here is all of yours applications</h2>
                     </div>
                 </div>
             </div>
@@ -29,27 +29,25 @@
             <!-- Featured_job_start -->
             <section class="featured-job-area">
                 <div class="container">
-                    {% for vacancy in vacancies %}
+                    {% for application in applications %}
                         <!-- single-job-content -->
                     <div class="single-job-items mb-30">
                         <div class="job-items">
                             <div class="company-img">
-                                <a href="/application/create/{{vacancy.id}}/"><img src="{% static 'assets/img/icon/job-list2.png' %}" alt=""></a>
+                                <a href="#"><img src="{% static 'assets/img/icon/job-list2.png' %}" alt=""></a>
                             </div>
                             <div class="job-tittle job-tittle2">
                                 <a href="/application/create/{{vacancy.id}}/">
-                                    <h4>{{ vacancy.name }}</h4>
+                                    <h4>{{ application.vacancy.name }}</h4>
                                 </a>
                                 <ul>
-                                    <li>{{ vacancy.agency }}</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>{{ vacancy.type }}</li>
-                                    <li>${{ vacancy.price }}</li>
+                                    <li>{{ application.name }}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>{{ application.phone }}</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="items-link items-link2 f-right">
-                            <a href="/application/create/{{vacancy.id}}/">Apply</a>
-                            <span>{{ vacancy.time_ago }}</span>
+                            <a href="/application/{{application.id}}/">View</a>
                         </div>
                     </div>
                     {% endfor %}
