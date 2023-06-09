@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Application details{% endblock %}
+
+{% block content %}
+
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/about.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>{{application.vacancy.name}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Hero Area End -->
+    <!-- job post company Start -->
+    <div class="job-post-company pt-120 pb-120">
+        <div class="container">
+            <div class="row justify-content-between">
+                <!-- Left Content -->
+                <div class="col-xl-7 col-lg-8">
+                    <!-- job single -->
+                    <div class="single-job-items mb-50">
+                        <div class="job-items">
+                            <div class="company-img company-img-details">
+                                <a href="#"><img src="{% static 'assets/img/icon/job-list1.png' %}" alt=""></a>
+                            </div>
+                            <div class="job-tittle">
+                                <a href="#">
+                                    <h4>{{application.name}}</h4>
+                                </a>
+                                <ul>
+                                    <li>{{vacancy.agency}}</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>{{application.vacancy.type}}</li>
+                                    <li>{{application.vacancy.price}}$</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                      <!-- job single End -->
+                   
+                    <div class="job-post-details">
+                        <div class="post-details1 mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Phone number: &emsp;{{application.phone}}</h4>
+                            </div>
+                            <br>
+                            <div class="small-section-tittle">
+                                <h4>Email: &emsp;{{application.user.email}}</h4>
+                            </div>
+                            <br>
+                            <div class="small-section-tittle">
+                                <h4>Information about the job seeker:</h4>
+                            </div>
+                            <p>{{application.aboutMe}}</p>
+
+                            <br>
+                            <div class="small-section-tittle">
+                                <h4>Work Experience:</h4>
+                            </div>
+                            <p>{{application.workExperience}}</p>
+
+                            <br>
+                            <div class="small-section-tittle">
+                                <h4>Education:</h4>
+                            </div>
+                            <p>{{application.education}}</p>
+
+                            <br>
+                            <div class="small-section-tittle">
+                                <h4>Skills:</h4>
+                            </div>
+                            <p>{{application.skills}}</p>
+
+                            <br>
+                            <div class="small-section-tittle">
+                                <h4>Cover Letter:</h4>
+                            </div>
+                            <p>{{application.coverLetter}}</p>
+                        </div>
+                                                
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- job post company End -->
+
+</main>
+
+{% endblock %}

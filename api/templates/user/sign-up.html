@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+<div class="signUpDiv">
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <div class="mt-10">
+            <input type="text" name="firstname" placeholder="First Name"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required
+                class="single-input">
+        </div>
+
+        <div class="mt-10">
+            <input type="text" name="lastname" placeholder="Last Name"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required
+                class="single-input">
+        </div>
+
+        <div class="mt-10">
+            <input type="text" name="username" placeholder="Enter your login"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your login'" required
+                class="single-input">
+        </div>
+
+        <div class="mt-10">
+            <input type="email" name="email" placeholder="Email address"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required
+                class="single-input">
+        </div>
+
+        <div class="mt-10">
+            <input type="password" name="password1" placeholder="Password"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'password'" required
+                class="single-input">
+        </div>
+
+        <div class="mt-10">
+            <input type="password" name="password2" placeholder="Repeat password"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Repeat password'" required
+                class="single-input">
+        </div>
+    
+        <div style="padding: 40px;">
+            <button type="submit" class="btn btn-success" style="margin-left: 85px;">Sign Up</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
